@@ -14,7 +14,22 @@
     packages to remove the former if they have no dependents
 - keep everything compatible with the official `brew` executable
 
+## Status
+
 This is very much an experimantal project.
+
+Benchmarks are done with [`hyperfine`][hyperfine]
+
+### Currently implemented
+
+#### `brasse list`
+
+Currently, this just outputs the list of formulae and casks, similar to `brew list` output without any arguments.
+
+| Command       |   Mean [ms] | Min [ms] | Max [ms] |     Relative |
+| :------------ | ----------: | -------: | -------: | -----------: |
+| `brew list`   | 490.6 ± 3.5 |    484.7 |    495.9 | 44.43 ± 2.21 |
+| `brasse list` |  11.0 ± 0.5 |     10.0 |     12.6 |         1.00 |
 
 ## Name
 
@@ -32,4 +47,5 @@ This project is hosted on Codeberg: <https://codeberg.org/kytta/go-brew.git>
 
 [bsd 2-clause "simplified" license]: https://spdx.org/licenses/BSD-2-Clause.html
 [homebrew]: https://brew.sh/
+[hyperfine]: https://github.com/sharkdp/hyperfine
 [nikita karamov]: https://www.kytta.dev/
