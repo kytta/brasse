@@ -6,6 +6,9 @@
 *.so
 *.dylib
 
+# Generated autocompletions
+/autocomplete/
+
 # Test binary, built with `go test -c`
 *.test
 
