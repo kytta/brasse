@@ -14,3 +14,7 @@
 
 # Go workspace file
 go.work
+
+# IDE configs
+/.idea/
+/.vscode/
