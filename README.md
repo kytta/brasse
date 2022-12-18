@@ -1,22 +1,22 @@
 # brasse
 
-`brasse` is a [Homebrew] clone developed with Go. Goals of this project are:
+`brasse` is a [Homebrew] clone developed with Go. The goals of this project are:
 
-- increase speeds for operations performed on the machine
+- increase speeds for operations performed offline
   - `brew list` takes 1.3 seconds
   - `brew search git` takes 8.7 seconds
   - `brew info git` takes 1.4 seconds
 - provide good piping support to allow for, for example:
   - pipe a list of package names to `install`
   - pipe a list from `outdated` to `info`
-- (optionally) provide better dependency managed
+- (optionally) provide better dependency management
   - similarly to APT, differentiate automatically and manually installed
     packages to remove the former if they have no dependents
 - keep everything compatible with the official `brew` executable
 
 ## Status
 
-This is very much an experimantal project.
+This is very much an experimental project.
 
 Benchmarks are done with [`hyperfine`][hyperfine]
 
@@ -43,7 +43,7 @@ Licensed under the [BSD 2-Clause "Simplified" License].
 
 ---
 
-This project is hosted on Codeberg: <https://codeberg.org/kytta/go-brew.git>
+This project is hosted on Codeberg: <https://codeberg.org/kytta/brasse.git>
 
 [bsd 2-clause "simplified" license]: https://spdx.org/licenses/BSD-2-Clause.html
 [homebrew]: https://brew.sh/
