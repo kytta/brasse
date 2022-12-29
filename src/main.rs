@@ -3,6 +3,7 @@ use clap::Command;
 mod cmd {
     pub mod list;
 }
+mod util;
 
 fn cli() -> Command {
     Command::new("brasse")

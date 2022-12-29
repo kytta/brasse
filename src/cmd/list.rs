@@ -1,11 +1,17 @@
+use crate::util::output::get_grid;
+use clap::{Arg, ArgAction, ArgMatches, Command};
 use std::{env, fs, io, path::PathBuf};
-
-use clap::{Command, ArgMatches};
 
 pub fn cli() -> Command {
     Command::new("list")
         .bin_name("brasse-list")
         .about("List installed formulae and casks")
+        .arg(
+            Arg::new("oneline")
+                .short('1')
+                .help("Force output to be one entry per line.")
+                .action(ArgAction::SetTrue),
+        )
 }
 
 fn get_formulae() -> Result<Vec<String>, io::Error> {
@@ -72,16 +78,11 @@ fn get_casks() -> Result<Vec<String>, io::Error> {
     Ok(casks)
 }
 
-pub fn main(_submatches: &ArgMatches) {
+pub fn main(submatches: &ArgMatches) {
+    let one_line = submatches.get_flag("oneline");
+
     eprintln!("==> Formulae");
-
-    for formula in get_formulae().unwrap() {
-        eprintln!("{}", formula);
-    }
-
+    eprintln!("{}", get_grid(get_formulae().unwrap(), one_line));
     eprintln!("==> Casks");
-
-    for cask in get_casks().unwrap() {
-        eprintln!("{}", cask);
-    }
+    eprintln!("{}", get_grid(get_casks().unwrap(), one_line));
 }
