@@ -4,6 +4,9 @@ prefix=/usr/local
 bindir=$(prefix)/bin
 datadir=$(prefix)/share
 
+.PHONY: all
+all: $(EXE) completions
+
 $(EXE): main.go ./**/*.go
 	go build .
 
@@ -27,9 +30,9 @@ autocomplete/_brasse: $(EXE)
 .PHONY: install
 install: $(EXE)
 	install -m755 $< $(DESTDIR)$(bindir)/brasse
-	install -Dm644 $(COMP_DIR)/brasse.bash $(DESTDIR)/$(datadir)/bash-completion/completions/brasse
-	install -Dm644 $(COMP_DIR)/brasse.fish $(DESTDIR)/$(datadir)/fish/vendor_completions.d/brasse.fish
-	install -Dm644 $(COMP_DIR)/_brasse $(DESTDIR)/$(datadir)/zsh/site-functions/_brasse
+	install -m644 $(COMP_DIR)/brasse.bash $(DESTDIR)$(datadir)/bash-completion/completions/brasse
+	install -m644 $(COMP_DIR)/brasse.fish $(DESTDIR)$(datadir)/fish/vendor_completions.d/brasse.fish
+	install -m644 $(COMP_DIR)/_brasse $(DESTDIR)$(datadir)/zsh/site-functions/_brasse
 
 .PHONY: clean
 clean:
