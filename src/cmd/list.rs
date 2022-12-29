@@ -1,12 +1,17 @@
-use std::env;
-use std::fs;
-use std::io;
+use std::{env, fs, io, path::PathBuf};
 
-use std::path::PathBuf;
+use clap::{Command, ArgMatches};
+
+pub fn cli() -> Command {
+    Command::new("list")
+        .bin_name("brasse-list")
+        .about("List installed formulae and casks")
+}
 
 fn get_formulae() -> Result<Vec<String>, io::Error> {
-    let cellar =
-        PathBuf::from(env::var("HOMEBREW_CELLAR").unwrap_or_else(|_| "/opt/homebrew/Cellar".to_string()));
+    let cellar = PathBuf::from(
+        env::var("HOMEBREW_CELLAR").unwrap_or_else(|_| "/opt/homebrew/Cellar".to_string()),
+    );
 
     let mut formulae: Vec<String> = Vec::new();
 
@@ -15,7 +20,7 @@ fn get_formulae() -> Result<Vec<String>, io::Error> {
         let path = entry.path();
         let file_name = path.file_name();
 
-        let formula_os_str  = match file_name {
+        let formula_os_str = match file_name {
             Some(f) => f,
             None => continue,
         };
@@ -37,8 +42,7 @@ fn get_formulae() -> Result<Vec<String>, io::Error> {
 }
 
 fn get_casks() -> Result<Vec<String>, io::Error> {
-    let caskroom =
-        PathBuf::from("/opt/homebrew/Caskroom".to_string());
+    let caskroom = PathBuf::from("/opt/homebrew/Caskroom".to_string());
 
     let mut casks: Vec<String> = Vec::new();
 
@@ -47,7 +51,7 @@ fn get_casks() -> Result<Vec<String>, io::Error> {
         let path = entry.path();
         let file_name = path.file_name();
 
-        let cask_os_str  = match file_name {
+        let cask_os_str = match file_name {
             Some(f) => f,
             None => continue,
         };
@@ -68,7 +72,7 @@ fn get_casks() -> Result<Vec<String>, io::Error> {
     Ok(casks)
 }
 
-fn main() {
+pub fn main(_submatches: &ArgMatches) {
     eprintln!("==> Formulae");
 
     for formula in get_formulae().unwrap() {
