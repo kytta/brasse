@@ -26,23 +26,14 @@ var listCmd = &cobra.Command{
 
 		fmt.Fprintf(os.Stdout, "%s %s\n", cyan("==>"), bold("Formulae"))
 
-		for {
-			formula, more := <-formulae
-			if !more {
-				break
-			}
-
+		for formula := range formulae {
 			fmt.Fprintln(os.Stdout, formula)
 		}
 
 		fmt.Fprintln(os.Stdout)
 		fmt.Fprintf(os.Stdout, "%s %s\n", cyan("==>"), bold("Casks"))
 
-		for {
-			cask, more := <-casks
-			if !more {
-				break
-			}
+		for cask := range casks {
 			fmt.Fprintln(os.Stdout, cask)
 		}
 	},
