@@ -14,6 +14,34 @@
     packages to remove the former if they have no dependents
 - keep everything compatible with the official `brew` executable
 
+## Install
+
+### From GitHub releases
+
+1. Open [the latest brasse release on GitHub](https://github.com/kytta/brasse/releases/latest)
+2. Download the asset that corresponds to your CPU (`aarch64` being Apple Silicon (M1/M2) and `x86_64` being Intel)
+3. Put the executable in your `$PATH` (for example, `~/.local/bin`)
+
+### Build from Source
+
+You need to have a Rust toolchain installed.
+
+1. Clone the repo
+
+   ```sh
+   git clone https://github.com/kytta/brasse.git
+   ```
+
+2. (if you have [just](https://github.com/casey/just)) run `just install`
+3. If you don't have `just`, run:
+
+   ```sh
+   cargo build --release
+   install -m 755 target/release/brasse ~/.local/bin/brasse
+   ```
+
+The steps above assume `~/.local/bin` is in your `$PATH`
+
 ## Status
 
 This is very much an experimental project.
