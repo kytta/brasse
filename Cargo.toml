@@ -19,3 +19,4 @@ terminal_size = "0.2.3"
 # use LTO for smaller binaries (that take longer to build)
 [profile.release]
 lto = true
+strip = "symbols"
