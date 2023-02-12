@@ -3,7 +3,7 @@
 `brasse` is a [Homebrew] clone written in Rust. The goals of this project are:
 
 - increase speeds for operations performed offline
-  - `brew list` takes 480 ms (`brasse list` takes 1 ms)
+  - `brew list` takes over 400 ms (`brasse list` takes 1 ms)
   - `brew search git` takes 869 ms
   - `brew info git` takes 530 ms
 - provide good piping support to allow for, for example:
@@ -27,10 +27,10 @@ Benchmarks are done with [`hyperfine`][hyperfine]
 Currently, this just outputs the list of formulae and casks.
 Supported arguments: `-1`
 
-| Command       |   Mean [ms] | Min [ms] | Max [ms] |        Relative |
-| :------------ | ----------: | -------: | -------: | --------------: |
-| `brew list`   | 481.9 ± 4.6 |    478.5 |    493.7 | 469.07 ± 170.43 |
-| `brasse list` |   1.0 ± 0.4 |      0.6 |      3.5 |            1.00 |
+| Command       |   Mean [ms] | Min [ms] | Max [ms] |       Relative |
+| :------------ |------------:|---------:|---------:|---------------:|
+| `brew list`   | 435.2 ± 7.2 |    428.5 |    453.1 | 329.88 ± 27.27 |
+| `brasse list` |   1.3 ± 0.1 |      1.2 |      2.9 |           1.00 |
 
 ## Name
 
