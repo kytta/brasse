@@ -1,6 +1,9 @@
-use crate::util::output::get_grid;
+use std::{fs, io};
+
 use clap::{Arg, ArgAction, ArgMatches, Command};
-use std::{env, fs, io, path::PathBuf};
+
+use crate::util::output::get_grid;
+use crate::util::path::{get_caskroom, get_cellar};
 
 pub fn cli() -> Command {
     Command::new("list")
@@ -15,9 +18,7 @@ pub fn cli() -> Command {
 }
 
 fn get_formulae() -> Result<Vec<String>, io::Error> {
-    let cellar = PathBuf::from(
-        env::var("HOMEBREW_CELLAR").unwrap_or_else(|_| "/opt/homebrew/Cellar".to_string()),
-    );
+    let cellar = get_cellar();
 
     let mut formulae: Vec<String> = Vec::new();
 
@@ -48,8 +49,7 @@ fn get_formulae() -> Result<Vec<String>, io::Error> {
 }
 
 fn get_casks() -> Result<Vec<String>, io::Error> {
-    let caskroom = PathBuf::from("/opt/homebrew/Caskroom".to_string());
-
+    let caskroom = get_caskroom();
     let mut casks: Vec<String> = Vec::new();
 
     for entry in fs::read_dir(caskroom)? {
