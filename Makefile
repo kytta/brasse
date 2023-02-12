@@ -15,3 +15,7 @@ install: $(EXE)
 .PHONY: clean
 clean:
 	rm -rf $(EXE)
+
+.PHONY: bench
+bench: $(EXE)
+	hyperfine --warmup 20 --shell=none -n "brew list" 'brew list' -n "brasse list" '$(EXE) list'
