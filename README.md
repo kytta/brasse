@@ -44,7 +44,7 @@ Licensed under the [BSD 2-Clause "Simplified" License].
 
 ---
 
-This project is hosted on Codeberg: <https://codeberg.org/kytta/brasse.git>
+This project is hosted on GitHub: <https://github.com/kytta/brasse.git>
 
 [bsd 2-clause "simplified" license]: https://spdx.org/licenses/BSD-2-Clause.html
 [homebrew]: https://brew.sh/

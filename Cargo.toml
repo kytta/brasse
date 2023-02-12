@@ -6,7 +6,7 @@ authors = [
 ]
 edition = "2021"
 description = "Homebrew, but better."
-repository = "https://codeberg.org/kytta/brasse"
+repository = "https://github.com/kytta/brasse"
 license = "BSD-2-Clause"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
