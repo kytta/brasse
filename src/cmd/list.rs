@@ -1,21 +1,7 @@
 use std::{fs, io};
 
-use clap::{Arg, ArgAction, ArgMatches, Command};
-
 use crate::util::output::get_grid;
 use crate::util::path::{get_caskroom, get_cellar};
-
-pub fn cli() -> Command {
-    Command::new("list")
-        .bin_name("brasse-list")
-        .about("List installed formulae and casks")
-        .arg(
-            Arg::new("oneline")
-                .short('1')
-                .help("Force output to be one entry per line.")
-                .action(ArgAction::SetTrue),
-        )
-}
 
 fn get_formulae() -> Result<Vec<String>, io::Error> {
     let cellar = get_cellar();
@@ -78,9 +64,7 @@ fn get_casks() -> Result<Vec<String>, io::Error> {
     Ok(casks)
 }
 
-pub fn main(submatches: &ArgMatches) {
-    let one_line = submatches.get_flag("oneline");
-
+pub fn print_list(one_line: bool) {
     eprintln!("==> Formulae");
     eprintln!("{}", get_grid(get_formulae().unwrap(), one_line));
     eprintln!("==> Casks");

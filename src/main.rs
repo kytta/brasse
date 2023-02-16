@@ -1,23 +1,34 @@
-use clap::{command, Command};
+use clap::{command, Parser, Subcommand};
+use cmd::list::print_list;
 
 mod cmd {
     pub mod list;
 }
 mod util;
 
-fn cli() -> Command {
-    command!()
-        .subcommand_required(true)
-        .arg_required_else_help(true)
-        .allow_external_subcommands(true)
-        .subcommand(cmd::list::cli())
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// List installed formulae and casks.
+    List {
+        /// Force output to be one entry per line.
+        #[arg(short = '1', long)]
+        oneline: bool,
+    },
 }
 
 fn main() {
-    let matches = cli().get_matches();
+    let args = Cli::parse();
 
-    match matches.subcommand() {
-        Some(("list", submatches)) => cmd::list::main(submatches),
-        _ => unreachable!(),
+    match args.command {
+        Commands::List { oneline } => {
+            print_list(oneline);
+        }
     };
 }
