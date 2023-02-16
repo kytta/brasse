@@ -1,6 +1,15 @@
 use term_grid::{Cell, Direction, Filling, Grid, GridOptions};
 use terminal_size::terminal_size;
 
+/// Prints a list
+pub fn print_list(list: Vec<String>, one_line: bool, title: Option<&str>) {
+    if let Some(title_str) = title {
+        eprintln!("==> {}", title_str);
+    }
+
+    eprintln!("{}", get_grid(list, one_line));
+}
+
 pub fn get_grid(stuff: Vec<String>, one_line: bool) -> String {
     let one_line_list = stuff.join("\n");
 
