@@ -9,9 +9,12 @@ repos:
         args: [--markdown-linebreak-ext=md]
       - id: check-toml
       - id: check-yaml
-  - repo: https://github.com/doublify/pre-commit-rust
-    rev: v1.0
+  - repo: local
     hooks:
-      - id: fmt
-      - id: cargo-check
-      - id: clippy
+      - id: rustfmt
+        name: "rustfmt"
+        description: "Format files with rustfmt."
+        language: rust
+        entry: rustfmt
+        types:
+          - rust
