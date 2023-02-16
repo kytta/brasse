@@ -1,10 +1,7 @@
+use brasse::casks::get_casks;
+use brasse::formulae::get_formulae;
+use brasse::util::output::print_list;
 use clap::{command, Parser, Subcommand};
-use cmd::list::print_list;
-
-mod cmd {
-    pub mod list;
-}
-mod util;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -28,7 +25,8 @@ fn main() {
 
     match args.command {
         Commands::List { oneline } => {
-            print_list(oneline);
+            print_list(get_formulae().unwrap(), oneline, Some("Formulae"));
+            print_list(get_casks().unwrap(), oneline, Some("Casks"));
         }
     };
 }
